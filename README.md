@@ -292,9 +292,10 @@ With the NavArena `navarena-server` package installed, you can run WebSocket ser
 ```bash
 python -m nomad_server --config train/config/nomad.yaml --checkpoint deployment/model_weights/nomad.pth
 python -m vint_server --config train/config/vint.yaml --dataset-name go_stanford
+python -m gnm_server --config train/config/gnm.yaml --dataset-name go_stanford
 ```
 
-NoMaD defaults to port `8765`; ViNT defaults to `8766`. Pass `--host` / `--port` as needed. ViNT’s default checkpoint path is `deployment/model_weights/vint.pth` (same convention as `deployment/config/models.yaml`); override with `--checkpoint` if your file name differs. For ViNT, set `--dataset-name` to a key present in both `train/config/vint.yaml` `datasets` and `train/vint_train/data/data_config.yaml` so `metric_waypoint_spacing` matches your training domain.
+NoMaD defaults to port `8765`; ViNT defaults to `8766`; GNM defaults to `8767`. Pass `--host` / `--port` as needed. Default checkpoints: `deployment/model_weights/nomad.pth`, `vint.pth`, `gnm.pth` (see `deployment/config/models.yaml`); override with `--checkpoint` when needed. For ViNT and GNM, set `--dataset-name` to a key present in both the training YAML `datasets` and `train/vint_train/data/data_config.yaml` so `metric_waypoint_spacing` matches your training domain.
 
 
 ### Adapting this code to different robots
