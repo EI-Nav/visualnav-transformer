@@ -285,6 +285,17 @@ This command opens up 4 windows:
 
 When the robot is finishing navigating, kill the `pd_controller.py` script, and then kill the tmux session. If you want to take control of the robot while it is navigating, the `joy_teleop.py` script allows you to do so with the joystick.
 
+### NavArena evaluation servers
+
+With the NavArena `navarena-server` package installed, you can run WebSocket servers for ImageNav benchmarks from the repository root:
+
+```bash
+python -m nomad_server --config train/config/nomad.yaml --checkpoint deployment/model_weights/nomad.pth
+python -m vint_server --config train/config/vint.yaml --dataset-name go_stanford
+```
+
+NoMaD defaults to port `8765`; ViNT defaults to `8766`. Pass `--host` / `--port` as needed. ViNT’s default checkpoint path is `deployment/model_weights/vint.pth` (same convention as `deployment/config/models.yaml`); override with `--checkpoint` if your file name differs. For ViNT, set `--dataset-name` to a key present in both `train/config/vint.yaml` `datasets` and `train/vint_train/data/data_config.yaml` so `metric_waypoint_spacing` matches your training domain.
+
 
 ### Adapting this code to different robots
 
